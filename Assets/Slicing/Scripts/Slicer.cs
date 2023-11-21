@@ -30,9 +30,13 @@ namespace Assets.Scripts
 
             GameObject positiveObject = CreateMeshGameObject(objectToCut);
             positiveObject.name = string.Format("{0}_positive", objectToCut.name);
+            positiveObject.AddComponent<DyingObject>();
+            positiveObject.GetComponent<DyingObject>().StartDeath();
 
             GameObject negativeObject = CreateMeshGameObject(objectToCut);
             negativeObject.name = string.Format("{0}_negative", objectToCut.name);
+            negativeObject.AddComponent<DyingObject>();
+            negativeObject.GetComponent<DyingObject>().StartDeath();
 
             var positiveSideMeshData = slicesMeta.PositiveSideMesh;
             var negativeSideMeshData = slicesMeta.NegativeSideMesh;

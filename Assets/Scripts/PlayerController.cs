@@ -2,8 +2,6 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
-using UnityEngine.UIElements;
-using static UnityEditor.Searcher.SearcherWindow.Alignment;
 
 public class PlayerController : MonoBehaviour
 {
@@ -16,6 +14,11 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float bodyMoveSpeed;
     [SerializeField] private float camMoveSpeed;
     private Vector2 rotationCamera;
+
+
+    [SerializeField] private Transform weapon;
+    [SerializeField] private GameObject bladeAmmo;
+    private float xBladeRotation;
 
     void Awake()
     {
@@ -33,6 +36,7 @@ public class PlayerController : MonoBehaviour
     void Update()
     {
         UnityEngine.Cursor.visible = false;
+        UnityEngine.Cursor.lockState = CursorLockMode.Locked;
 
         // body
         Vector3 forward = transform.forward * bodyMovement.y;
@@ -47,6 +51,9 @@ public class PlayerController : MonoBehaviour
         //Rotating the player
         transform.localRotation = Quaternion.Euler(0, rotationCamera.y, 0);
         
+
+
+        //ËMathf.PingPong(xBladeRotation, Time.deltaTime * 10f);
     }
 
 
@@ -67,6 +74,12 @@ public class PlayerController : MonoBehaviour
 
     public void Fire(InputAction.CallbackContext context)
     {
-        
+        if (context.performed)
+        {
+            // Shoot 
+            {
+                Instantiate(bladeAmmo, transform.position, transform.rotation);
+            };
+        }
     }
 }
