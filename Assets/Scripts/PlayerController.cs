@@ -18,7 +18,9 @@ public class PlayerController : MonoBehaviour
 
     [SerializeField] private Transform weapon;
     [SerializeField] private GameObject bladeAmmo;
-    private float xBladeRotation;
+
+    private float zBladeRotation;
+    private float zBladeSpeedRotation = 10f;
 
     void Awake()
     {
@@ -50,10 +52,9 @@ public class PlayerController : MonoBehaviour
         cam.transform.localRotation = Quaternion.Euler(rotationCamera.x, 0, 0);
         //Rotating the player
         transform.localRotation = Quaternion.Euler(0, rotationCamera.y, 0);
-        
 
 
-        //ËMathf.PingPong(xBladeRotation, Time.deltaTime * 10f);
+        zBladeRotation += zBladeRotation;
     }
 
 
@@ -78,7 +79,8 @@ public class PlayerController : MonoBehaviour
         {
             // Shoot 
             {
-                Instantiate(bladeAmmo, transform.position, transform.rotation);
+                GameObject blade = Instantiate(bladeAmmo, transform.position, transform.rotation);
+                blade.transform.Rotate(0f, 0f, zBladeRotation);
             };
         }
     }

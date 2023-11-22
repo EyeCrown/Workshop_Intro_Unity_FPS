@@ -60,15 +60,15 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1754841271581124794}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.0000015025432, y: -0.6007628, z: -0.000007595051, w: 0.79942733}
-  m_LocalPosition: {x: 0.318, y: 0.521, z: 0.955}
+  m_LocalRotation: {x: 0, y: 0, z: -0.7435576, w: -0.668672}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0.1, y: 1, z: 0.1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 7517105976491894575}
   - {fileID: 2820355667169265941}
   m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 90, y: 0, z: 90}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &7938981735135381918
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -158,6 +158,7 @@ MonoBehaviour:
   _tip: {fileID: 6416509821758975887}
   _base: {fileID: 1705655770754557863}
   _forceAppliedToCut: 5
+  speed: 5
 --- !u!54 &8832467790322360300
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -181,7 +182,7 @@ Rigidbody:
   m_ImplicitCom: 1
   m_ImplicitTensor: 1
   m_UseGravity: 0
-  m_IsKinematic: 1
+  m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0

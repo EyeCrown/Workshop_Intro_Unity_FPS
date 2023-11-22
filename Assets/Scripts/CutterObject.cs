@@ -5,9 +5,9 @@ using UnityEngine;
 
 public class CutterObject : MonoBehaviour
 {
-    [SerializeField]
-    [Tooltip("The blade object")]
-    private GameObject _blade = null;
+    //[SerializeField]
+    //[Tooltip("The blade object")]
+    //private GameObject _blade = null;
      
     [SerializeField]
     [Tooltip("The empty game object located at the tip of the blade")]

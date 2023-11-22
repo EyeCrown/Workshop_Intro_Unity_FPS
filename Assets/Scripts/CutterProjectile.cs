@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class CutterProjectile : CutterObject
 {
-    private float speed = 5f;
+    [SerializeField] private float speed = 5f;
 
     void Start()
     {
@@ -13,7 +13,9 @@ public class CutterProjectile : CutterObject
 
     void Update()
     {
-        //transform.Rotate(0, 0, speed);
-        transform.Translate(transform.forward * speed * Time.deltaTime);
+        transform.Rotate(0, 0, speed);
+        
+        transform.Translate(Vector3.forward * speed * Time.deltaTime);
+        
     }
 }
