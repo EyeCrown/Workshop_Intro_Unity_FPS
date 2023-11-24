@@ -154,7 +154,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b14260d964f69dc44941c1bdb8e16e19, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _blade: {fileID: 1754841271581124794}
   _tip: {fileID: 6416509821758975887}
   _base: {fileID: 1705655770754557863}
   _forceAppliedToCut: 5

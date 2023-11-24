@@ -7,6 +7,8 @@ public class PlayerController : MonoBehaviour
 {
     private Rigidbody rb;
     private GameObject cam;
+    private AudioSource source;
+
 
     private Vector2 bodyMovement;
     private Vector2 cameraMovement;
@@ -19,13 +21,17 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private Transform weapon;
     [SerializeField] private GameObject bladeAmmo;
 
+
     private float zBladeRotation;
     private float zBladeSpeedRotation = 10f;
+
+    [SerializeField] private float distToPickUp;
 
     void Awake()
     {
         rb = GetComponent<Rigidbody>();
         cam = transform.GetChild(0).gameObject;
+        source = GetComponent<AudioSource>();
     }
 
 
@@ -55,6 +61,9 @@ public class PlayerController : MonoBehaviour
 
 
         zBladeRotation += zBladeRotation;
+
+        Vector3 forwardDirCam = cam.transform.TransformDirection(Vector3.forward) * distToPickUp;
+        Debug.DrawRay(transform.position, forwardDirCam, Color.green);
     }
 
 
@@ -82,6 +91,21 @@ public class PlayerController : MonoBehaviour
                 GameObject blade = Instantiate(bladeAmmo, transform.position, transform.rotation);
                 blade.transform.Rotate(0f, 0f, zBladeRotation);
             };
+        }
+    }
+
+    public void Grab(InputAction.CallbackContext context)
+    {
+        if (context.performed)
+        {
+            RaycastHit hit;
+            Physics.Raycast(cam.transform.position, cam.transform.TransformDirection(Vector3.forward), out hit, distToPickUp); 
+            if (hit.transform.tag == "Flower")
+            {
+                Debug.Log("Touché");
+                hit.transform.gameObject.SetActive(false);
+                source.Play();
+            }
         }
     }
 }
