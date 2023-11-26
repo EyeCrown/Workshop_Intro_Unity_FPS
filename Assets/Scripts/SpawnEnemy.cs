@@ -8,6 +8,7 @@ public class SpawnEnemy : MonoBehaviour
 
     [SerializeField] private GameObject m_Enemy;
     [SerializeField] private GameObject m_Target;
+    [SerializeField] private GameObject m_PatrolPointsParent;
 
     [SerializeField] private float angle;
     [SerializeField] private float distance;
@@ -28,16 +29,24 @@ public class SpawnEnemy : MonoBehaviour
     {
         spawnTime += Time.deltaTime;
 
-        if (spawnTime >= spawnRate)
+        if (spawnTime >= spawnRate && canSpawn)
         {
-            if (canSpawn)
-            {
-                GameObject newEnemy = Instantiate(m_Enemy, transform);
-                newEnemy.GetComponent<Enemy>().target = m_Target.transform;
-                newEnemy.GetComponent<Enemy>().SetParams(distance, angle);
-            }
-
             spawnTime = 0f;
+            GameObject newEnemy = Instantiate(m_Enemy, transform);
+            newEnemy.GetComponent<Enemy>().target = m_Target.transform;
+            newEnemy.GetComponent<Enemy>().SetParams(distance, angle, GeneratePatrolPoints(m_PatrolPointsParent));
         }
+    }
+
+    private List<Transform> GeneratePatrolPoints(GameObject parentGameObject)
+    {
+        List<Transform> points = new List<Transform>();
+
+        foreach (Transform child in parentGameObject.GetComponentInChildren<Transform>())
+        {
+            points.Add(child);
+        }
+
+        return points;
     }
 }
